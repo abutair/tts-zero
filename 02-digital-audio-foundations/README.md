@@ -1,4 +1,4 @@
-# VITS2 From-Scratch Practice Notes
+# Digital Audio Foundations for VITS2: Sampling, Frequency, and Sine Waves
 
 This directory contains small experiments used to build the prerequisite knowledge for implementing VITS2 from scratch. The current checkpoint focuses on tensor shapes, digital audio sampling, frequency, and generating a controlled sine wave before returning to STFT and mel-spectrogram extraction.
 
@@ -219,32 +219,107 @@ sequence mask:    [B, 1, T]
 
 A mask shaped `[B, 1, T]` broadcasts across the channel dimension of `[B, C, T]`. A raw `[B, T]` tensor should normally use a `[B, T]` mask to avoid accidental broadcasting into `[B, B, T]`.
 
-## Next checkpoint
+## 11. Completed 440 Hz experiment
 
-Generate a one-second `440 Hz` sine wave using:
+The chapter experiment generates a controlled signal using:
 
 ```text
-sample_rate     = 22,050
-frequency       = 440 Hz
+sample_rate     = 22,050 samples per second
+frequency       = 440 cycles per second
 duration        = 1 second
-waveform_length = sample_rate * duration
+waveform_length = 22,050 samples
 ```
 
-Expected shapes:
+The data flow is:
 
 ```text
-sample_indices: [22050]
-time:           [22050]
-amplitude:      [22050]
-batched waveform: [1, 22050]
+sample indices [T]
+    -> divide by sample rate
+physical time [T]
+    -> multiply by frequency
+cycles elapsed [T]
+    -> sin(2*pi*cycles_elapsed)
+amplitude [T]
+    -> unsqueeze(0)
+batched waveform [1,T]
 ```
 
-After verifying this waveform, apply the STFT and check whether its strongest frequency bin corresponds approximately to `440 Hz`.
+The final tensor has these invariants:
+
+```text
+shape:     [1, 22050]
+dtype:     float32
+amplitude: between -1 and +1
+```
+
+The number of measurements per cycle is:
+
+```text
+samples_per_cycle = sample_rate / frequency
+                  = 22050 / 440
+                  = approximately 50.11
+```
+
+It is not an integer, so cycle boundaries generally occur between stored samples.
+
+## 12. Why structural assertions are insufficient
+
+Shape, dtype, and range checks cannot prove that a waveform has the intended frequency. For example, this incorrect formula:
+
+```text
+sin(pi*cycles_elapsed)
+```
+
+produces approximately `220 Hz`, but it still has the correct shape, uses `float32`, and remains inside `[-1,+1]`.
+
+The correct formula is:
+
+```text
+sin(2*pi*cycles_elapsed)
+```
+
+This demonstrates the difference between:
+
+- Structural invariants: shape, dtype, and range.
+- Semantic invariants: whether the data represents the intended physical signal.
+
+## 13. Verifying frequency with upward zero crossings
+
+An upward zero crossing occurs when two adjacent samples satisfy:
+
+```text
+current sample < 0
+next sample >= 0
+```
+
+The comparison uses shifted views of the same amplitude tensor:
+
+```text
+current samples: amplitude[:-1]
+next samples:    amplitude[1:]
+```
+
+A sine wave has approximately one upward zero crossing per cycle. A one-second `440 Hz` signal therefore has approximately `440` crossings.
+
+The generated buffer starts exactly at zero and ends one sample before `1.0` second. Because the initial zero is not preceded by a negative sample and the final boundary is excluded, the discrete comparison normally counts `439` crossings. Accepting a difference of at most one verifies the intended frequency while respecting this boundary convention.
+
+## 14. Chapter completion
+
+Chapter 02 is complete when all of these statements hold:
+
+- Sample indices map correctly to physical time.
+- The waveform completes approximately `440` cycles in one second.
+- The waveform shape is `[1,22050]`.
+- The dtype is `float32`.
+- Every amplitude lies inside `[-1,+1]`.
+- The upward-zero-crossing count differs from `440` by no more than one.
+
+The next chapter is [STFT and mel features](../03-stft-and-mel-features/README.md). It will test whether the STFT places the controlled waveform's strongest energy near `440 Hz`.
 
 ## Related practice files
 
-- `1.1Tensor Shapes, Masks, and Broadcasting.ipynb`
-- `1.1Tensor Shapes, Masks, and Broadcasting — Notes.md`
-- `1.2-audtio-sampling.ipynb`
-- `1.2Audio Sampling & STFT Notes.md`
-
+- [Tensor-foundations experiment](../01-tensor-foundations/experiment.ipynb)
+- [Tensor-foundations notes](../01-tensor-foundations/README.md)
+- [Chapter 02 experiment](experiment.ipynb)
+- [STFT and mel experiment](../03-stft-and-mel-features/experiment.ipynb)
+- [STFT and mel notes](../03-stft-and-mel-features/README.md)
