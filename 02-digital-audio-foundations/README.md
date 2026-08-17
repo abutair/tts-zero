@@ -99,6 +99,7 @@ Frequency describes how many complete cycles a wave makes per second:
 For sound, a higher frequency generally produces a higher perceived pitch. Frequency is different from amplitude:
 
 - Frequency controls how quickly the waveform repeats and relates to pitch.
+-
 - Amplitude controls the waveform's height and relates to loudness.
 
 ## 5. Samples per cycle

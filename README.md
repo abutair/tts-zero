@@ -7,7 +7,7 @@ This directory contains focused experiments and notes for rebuilding VITS2 while
 | Chapter | Topic | Notes | Experiment |
 |---:|---|---|---|
 | 01 | Tensor shapes, masks, and broadcasting | [Read](01-tensor-foundations/README.md) | [Open](01-tensor-foundations/experiment.ipynb) |
-| 02 | Digital audio sampling, frequency, and sine waves | [Read](02-digital-audio-foundations/README.md) | In progress |
+| 02 | Digital audio sampling, frequency, and sine waves | [Read](02-digital-audio-foundations/README.md) |  [Open](02-digital-audio-foundations/experiment.ipynb)|
 | 03 | STFT and mel features | [Read](03-stft-and-mel-features/README.md) | [Open](03-stft-and-mel-features/experiment.ipynb) |
 
 ## Planned dependency order
