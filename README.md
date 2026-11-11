@@ -9,7 +9,7 @@ This directory contains focused experiments and notes for rebuilding VITS2 while
 | 01 | Tensor shapes, masks, and broadcasting | [Read](01-tensor-foundations/README.md) | [Open](01-tensor-foundations/experiment.ipynb) |
 | 02 | Digital audio sampling, frequency, and sine waves | [Read](02-digital-audio-foundations/README.md) |  [Open](02-digital-audio-foundations/experiment.ipynb)|
 | 03 | STFT and mel features | [Read](03-stft-and-mel-features/README.md) | [Open](03-stft-and-mel-features/experiment.ipynb) |
-| 04 | Arabic text processing and batching | [Read](04-text-processing-and-batching/README.md) | To be built |
+| 04 | Arabic text processing and batching | [Read](04-text-processing-and-batching/README.md) | [Open](04-text-processing-and-batching/experiment.ipynb) |
 
 ## Planned dependency order
 
