@@ -10,6 +10,7 @@ This directory contains focused experiments and notes for rebuilding VITS2 while
 | 02 | Digital audio sampling, frequency, and sine waves | [Read](02-digital-audio-foundations/README.md) |  [Open](02-digital-audio-foundations/experiment.ipynb)|
 | 03 | STFT and mel features | [Read](03-stft-and-mel-features/README.md) | [Open](03-stft-and-mel-features/experiment.ipynb) |
 | 04 | Arabic text processing and batching | [Read](04-text-processing-and-batching/README.md) | [Open](04-text-processing-and-batching/experiment.ipynb) |
+| 05 | Text encoder and prior distribution | [Read](05-text-encoder-and-prior/README.md) | [Open](05-text-encoder-and-prior/experiment.ipynb) |
 
 ## Planned dependency order
 
