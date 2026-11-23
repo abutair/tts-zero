@@ -11,6 +11,13 @@ This directory contains focused experiments and notes for rebuilding VITS2 while
 | 03 | STFT and mel features | [Read](03-stft-and-mel-features/README.md) | [Open](03-stft-and-mel-features/experiment.ipynb) |
 | 04 | Arabic text processing and batching | [Read](04-text-processing-and-batching/README.md) | [Open](04-text-processing-and-batching/experiment.ipynb) |
 | 05 | Text encoder and prior distribution | [Read](05-text-encoder-and-prior/README.md) | [Open](05-text-encoder-and-prior/experiment.ipynb) |
+| 06 | Posterior encoder | [Read](06-posterior-encoder/README.md) | [Open](06-posterior-encoder/experiment.ipynb) |
+| 07 | Normalizing flow | [Read](07-normalizing-flow/README.md) | [Open](07-normalizing-flow/experiment.ipynb) |
+| 08 | Monotonic Alignment Search | [Read](08-monotonic-alignment-search/README.md) | [Open](08-monotonic-alignment-search/experiment.ipynb) |
+| 09 | Duration prediction | [Read](09-duration-prediction/README.md) | [Open](09-duration-prediction/experiment.ipynb) |
+| 10 | Waveform decoder | [Read](10-waveform-decoder/README.md) | [Open](10-waveform-decoder/experiment.ipynb) |
+| 11 | Discriminators and losses | [Read](11-discriminators-and-losses/README.md) | [Open](11-discriminators-and-losses/experiment.ipynb) |
+| 12 | Full training and inference paths | [Read](12-full-training-and-inference/README.md) | [Open](12-full-training-and-inference/experiment.ipynb) |
 
 ## Planned dependency order
 
